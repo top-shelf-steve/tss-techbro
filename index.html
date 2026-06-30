@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Techbro Dictionary</title>
+    <meta name="description" content="A Comprehensive & Definitive Guide to Modern Corporate Jargon, LinkedIn Vernacular & Startup-Industrial Complex Terminology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=JetBrains+Mono:ital,wght@0,400;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+        :root {
+            --bg: #faf8f4;
+            --bg-alt: #f2efe8;
+            --text: #2c2c2c;
+            --text-muted: #7a7568;
+            --text-faint: #a8a08e;
+            --accent: #c0392b;
+            --accent-soft: #e74c3c20;
+            --link-blue: #0a66c2;
+            --border: #ddd6c8;
+            --border-light: #ece8df;
+            --card-bg: #fffefa;
+            --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+            --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Noise overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 256px 256px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 48px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 32px auto 0;
+        }
+
+        .overline {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-weight: 900;
+            font-size: clamp(42px, 8vw, 72px);
+            line-height: 1.0;
+            letter-spacing: -1px;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        h1 span.accent {
+            color: var(--accent);
+        }
+
+        .tagline {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 12px auto 0;
+            line-height: 1.5;
+        }
+
+        .edition {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            margin-top: 20px;
+        }
+
+        /* Epigraph */
+        .epigraph {
+            max-width: 540px;
+            margin: 40px auto 0;
+            padding: 20px 28px;
+            border-left: 3px solid var(--border);
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
+
+        /* Search */
+        .search-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg);
+            padding: 20px 0 16px;
+            border-bottom: 1px solid var(--border-light);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .search-wrapper.scrolled {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            font-family: var(--sans);
+            font-size: 15px;
+            color: var(--text);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-faint);
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-faint);
+            pointer-events: none;
+        }
+
+        .result-count {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-faint);
+            text-align: right;
+            margin-top: 6px;
+            padding: 0 24px;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Letter nav */
+        .letter-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2px;
+            padding: 16px 0 8px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .letter-nav a {
+            font-family: var(--mono);
+            font-size: 12px;
+            padding: 4px 7px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+
+        .letter-nav a:hover {
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .letter-nav a.disabled {
+            color: var(--border);
+            pointer-events: none;
+        }
+
+        /* Dictionary content */
+        main {
+            padding: 24px 0 80px;
+        }
+
+        .letter-section {
+            margin-bottom: 12px;
+        }
+
+        .letter-heading {
+            font-family: var(--serif);
+            font-weight: 900;
+            font-size: 36px;
+            color: var(--accent);
+            padding: 20px 0 8px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 20px;
+            scroll-margin-top: 100px;
+        }
+
+        .entry {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .entry:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .entry-term {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .entry-pos {
+            font-family: var(--mono);
+            font-style: italic;
+            font-size: 12px;
+            color: var(--text-faint);
+            margin-bottom: 8px;
+        }
+
+        .entry-def {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .entry-example {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--text-muted);
+            padding-left: 16px;
+            border-left: 2px solid var(--border-light);
+        }
+
+        /* No results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .no-results.visible {
+            display: block;
+        }
+
+        .no-results p {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .no-results .subtext {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--text-faint);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            font-family: var(--mono);
+            font-size: 10px;
+            line-height: 1.8;
+            color: var(--text-faint);
+            letter-spacing: 0.5px;
+        }
+
+        footer .pdf-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        footer .pdf-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 40px;
+            height: 40px;
+            background: var(--text);
+            color: var(--bg);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header { padding: 48px 0 32px; }
+            .tagline { font-size: 14px; }
+            .epigraph { margin: 28px 16px 0; padding: 16px 20px; font-size: 13px; }
+            .entry-term { font-size: 19px; }
+            .letter-heading { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="overline">Est. 2026 &mdash; First Edition</div>
+        <h1>The Techbro<br><span class="accent">Dictionary</span></h1>
+        <p class="tagline">A Comprehensive &amp; Definitive Guide to Modern Corporate Jargon, LinkedIn&nbsp;Vernacular &amp; Startup&#8209;Industrial Complex Terminology</p>
+        <p class="edition">Peer-Reviewed by Absolutely No One</p>
+        <blockquote class="epigraph">
+            &ldquo;We&rsquo;re not just building a dictionary. We&rsquo;re disrupting the lexicographic ecosystem by dogfooding a synergistic, full&#8209;stack approach to ideating net&#8209;net definitions that move the needle on thought leadership.&rdquo;
+        </blockquote>
+    </div>
+</header>
+
+<div class="search-wrapper" id="searchWrapper">
+    <div class="search-box">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search for a term... (try &quot;meeting&quot; or &quot;LinkedIn&quot;)" autocomplete="off">
+    </div>
+    <div class="letter-nav" id="letterNav"></div>
+    <div class="result-count" id="resultCount"></div>
+</div>
+
+<main class="container" id="dictionary">
+</main>
+
+<div class="no-results" id="noResults">
+    <p>No results found.</p>
+    <p class="subtext">That term hasn&rsquo;t been disrupted yet. Check back after the next all-hands.</p>
+</div>
+
+<footer>
+    <div class="container">
+        <a class="pdf-link" href="techbro-dictionary.pdf">&darr; Download the PDF edition</a>
+        <p>&copy; 2026 The Institute for Strategic Buzzword Alignment&trade;<br>
+        No part of this dictionary may be reproduced without first circling back with the tiger team.</p>
+    </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&uarr;</button>
+
+<script>
+const entries = [
+    { term: "Align", pos: "v.", def: "To schedule a meeting to discuss scheduling another meeting. Often used to describe the act of forcing agreement while maintaining the illusion of collaboration.", ex: "\u201cWe need to align on the alignment of our alignment strategy before EOD.\u201d" },
+    { term: "Bandwidth", pos: "n.", def: "The polite way of saying \u201cabsolutely not.\u201d A finite and perpetually depleted resource that exists solely to decline requests.", ex: "\u201cI\u2019d love to help, but I just don\u2019t have the bandwidth right now.\u201d (Translation: I would not love to help.)" },
+    { term: "Circle Back", pos: "v.", def: "To indefinitely postpone something while creating the comforting illusion of future action. The corporate equivalent of \u201cI\u2019ll call you.\u201d", ex: "\u201cLet\u2019s circle back on this next quarter.\u201d (Narrator: They did not circle back.)" },
+    { term: "Deep Dive", pos: "n.", def: "A longer meeting. Distinguished from a regular meeting only by the presence of the phrase \u201cdeep dive\u201d in the calendar invite.", ex: "\u201cI\u2019d love to do a deep dive on our Q3 engagement metrics.\u201d (Duration: 90 minutes. Depth achieved: wading pool.)" },
+    { term: "Disrupt", pos: "v.", def: "To copy something that already exists, put it in an app, and add a subscription model. Bonus points if the thing you\u2019re disrupting was working fine.", ex: "\u201cWe\u2019re disrupting the toaster industry with an AI-powered, blockchain-enabled smart bread experience.\u201d" },
+    { term: "Dogfooding", pos: "v.", def: "Using your own product, but describing it with terminology that makes it sound unpleasant. Somehow became a badge of honor rather than a health code violation.", ex: "\u201cWe\u2019ve been dogfooding the new release internally and honestly it\u2019s been\u2026 a journey.\u201d" },
+    { term: "Double Down", pos: "v.", def: "To do the same thing that isn\u2019t working, but with more conviction and a bigger slide deck.", ex: "\u201cThe rebrand didn\u2019t move the needle, so we\u2019re going to double down on the rebrand of the rebrand.\u201d" },
+    { term: "Ecosystem", pos: "n.", def: "A collection of loosely related products, services, and APIs that technically interoperate in the same way that a toaster and a bathtub technically interoperate.", ex: "\u201cOur ecosystem of tools empowers developers to seamlessly integrate with our other tools that also need integrating.\u201d" },
+    { term: "Full-Stack", pos: "adj.", def: "Describes a developer who is mass-produced by 12-week bootcamps and has watched at least three YouTube tutorials on both frontend and backend development.", ex: "\u201cI\u2019m a full-stack engineer.\u201d (Has deployed one Express server and a React todo app.)" },
+    { term: "Growth Hacking", pos: "n.", def: "Marketing, but described using language that makes it sound like you\u2019re breaking into a mainframe rather than A/B testing button colors.", ex: "\u201cOur growth hacking strategy leveraged viral loop mechanics to 10x our sign-up funnel.\u201d (They changed the button from gray to green.)" },
+    { term: "Ideate", pos: "v.", def: "To think, but in a way that justifies a whiteboard, Post-it notes, and a $400/hour facilitator.", ex: "\u201cLet\u2019s ideate on some blue-sky solutions in our innovation sandbox.\u201d (Translation: Let\u2019s brainstorm.)" },
+    { term: "Lean In", pos: "v.", def: "To do significantly more work while being told it\u2019s empowering. Often invoked by people who are already standing.", ex: "\u201cI really need you to lean in on this initiative.\u201d (The initiative has no budget, no timeline, and no executive sponsor.)" },
+    { term: "Leverage", pos: "v.", def: "To use. That\u2019s it. That\u2019s the whole definition. But \u201cuse\u201d only has three letters and doesn\u2019t look as good on a slide.", ex: "\u201cWe need to leverage our core competencies to leverage our leverage.\u201d (Use our skills to use our stuff.)" },
+    { term: "Move the Needle", pos: "v.", def: "To produce a result that is measurable, visible, and will look good in someone else\u2019s performance review.", ex: "\u201cIs this really going to move the needle?\u201d (Is this going to make me look good to my boss\u2019s boss?)" },
+    { term: "Net-Net", pos: "n., adv.", def: "\u201cIn summary,\u201d but for people who believe that saying a word twice makes it more executive.", ex: "\u201cSo net-net, the net-net is that we need to net-net this by Friday.\u201d" },
+    { term: "North Star", pos: "n.", def: "A guiding metric or vision that the entire company aligns around for approximately two quarters before it is quietly replaced by a different North Star.", ex: "\u201cOur North Star is user delight.\u201d (Last quarter\u2019s North Star, revenue growth, has been sent to a farm upstate.)" },
+    { term: "Operationalize", pos: "v.", def: "To actually do the thing everyone has been talking about doing for six months. The rarest verb in the techbro lexicon.", ex: "\u201cIt\u2019s time to operationalize our strategy.\u201d (It has been time for four sprints.)" },
+    { term: "Pivot", pos: "v., n.", def: "To abandon your original idea after burning through most of your Series A, but describe it using the language of basketball rather than failure.", ex: "\u201cWe\u2019re not failing, we\u2019re pivoting to an adjacent market opportunity.\u201d (The original market opportunity filed a restraining order.)" },
+    { term: "Scale", pos: "v.", def: "To make something bigger. The word exists primarily to distinguish startups (which \u201cscale\u201d) from regular businesses (which \u201cgrow\u201d like peasants).", ex: "\u201cWe need to think about how this scales.\u201d (We have 11 users but are architecting for 11 million.)" },
+    { term: "Ship It", pos: "v.", def: "To release software to production with the confidence of someone who has never been paged at 3 AM. Often accompanied by a Slack emoji.", ex: "\u201cWe\u2019re just going to ship it and iterate.\u201d (The QA team has entered the chat. The QA team has left the chat.)" },
+    { term: "Synergy", pos: "n.", def: "The original techbro word. A mystical force that allegedly emerges when two things are combined, even though no one has ever successfully measured it.", ex: "\u201cThe synergy between our sales and engineering teams is incredible.\u201d (Sales and engineering have not spoken since the Q2 incident.)" },
+    { term: "Table Stakes", pos: "n.", def: "The bare minimum, repackaged to sound like a poker metaphor so that doing the bare minimum sounds strategic.", ex: "\u201cSSO is table stakes at this point.\u201d (We still don\u2019t have SSO.)" },
+    { term: "Take This Offline", pos: "v. phrase", def: "To end a meeting argument by scheduling a smaller, more intense argument. A diplomatic ejector seat.", ex: "\u201cGreat points, both of you. Let\u2019s take this offline.\u201d (Translation: You are both embarrassing yourselves.)" },
+    { term: "Thought Leader", pos: "n.", def: "A person with a LinkedIn account, a ring light, and opinions. Distinguished from regular people with opinions by a blue checkmark and/or a TEDx talk.", ex: "\u201cAs a thought leader in the DevOps space, I believe we need to shift left.\u201d (Has posted 47 LinkedIn posts this week.)" },
+    { term: "Tiger Team", pos: "n.", def: "A small group of people doing the work that the larger group was supposed to be doing. Essentially an admission that the org chart is decorative.", ex: "\u201cWe\u2019re spinning up a tiger team to address the outage.\u201d (The tiger team is just Dave. Dave is always the tiger team.)" },
+    { term: "Unpack", pos: "v.", def: "To discuss, but in a way that suggests the topic arrived in luggage and requires careful handling by trained professionals.", ex: "\u201cThere\u2019s a lot to unpack here.\u201d (There isn\u2019t. The answer is no.)" },
+    { term: "Value-Add", pos: "n., adj.", def: "Something useful, described in a way that implies usefulness is exceptional rather than the baseline expectation for doing your job.", ex: "\u201cWhat\u2019s the value-add of this meeting?\u201d (This meeting has no value-add. No meeting has ever had a value-add.)" },
+];
+
+// Build letter nav
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const usedLetters = new Set(entries.map(e => e.term[0].toUpperCase()));
+const navEl = document.getElementById('letterNav');
+letters.forEach(l => {
+    const a = document.createElement('a');
+    a.textContent = l;
+    a.href = `#letter-${l}`;
+    if (!usedLetters.has(l)) a.classList.add('disabled');
+    navEl.appendChild(a);
+});
+
+// Group and render
+function render(filteredEntries) {
+    const dict = document.getElementById('dictionary');
+    const noResults = document.getElementById('noResults');
+    const countEl = document.getElementById('resultCount');
+    dict.innerHTML = '';
+
+    if (filteredEntries.length === 0) {
+        noResults.classList.add('visible');
+        countEl.textContent = '0 entries';
+        return;
+    }
+
+    noResults.classList.remove('visible');
+    countEl.textContent = `${filteredEntries.length} ${filteredEntries.length === 1 ? 'entry' : 'entries'}`;
+
+    const grouped = {};
+    filteredEntries.forEach(e => {
+        const l = e.term[0].toUpperCase();
+        if (!grouped[l]) grouped[l] = [];
+        grouped[l].push(e);
+    });
+
+    Object.keys(grouped).sort().forEach(letter => {
+        const section = document.createElement('section');
+        section.className = 'letter-section';
+
+        const heading = document.createElement('h2');
+        heading.className = 'letter-heading';
+        heading.id = `letter-${letter}`;
+        heading.textContent = letter;
+        section.appendChild(heading);
+
+        grouped[letter].forEach(e => {
+            const entry = document.createElement('article');
+            entry.className = 'entry';
+            entry.innerHTML = `
+                <h3 class="entry-term">${e.term}</h3>
+                <div class="entry-pos">${e.pos}</div>
+                <p class="entry-def">${e.def}</p>
+                <p class="entry-example">${e.ex}</p>
+            `;
+            section.appendChild(entry);
+        });
+
+        dict.appendChild(section);
+    });
+}
+
+// Initial render
+render(entries);
+
+// Search
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    if (!q) {
+        render(entries);
+        return;
+    }
+    const filtered = entries.filter(e =>
+        e.term.toLowerCase().includes(q) ||
+        e.def.toLowerCase().includes(q) ||
+        e.ex.toLowerCase().includes(q)
+    );
+    render(filtered);
+});
+
+// Sticky search shadow
+const searchWrapper = document.getElementById('searchWrapper');
+const observer = new IntersectionObserver(
+    ([e]) => searchWrapper.classList.toggle('scrolled', !e.isIntersecting),
+    { threshold: 0, rootMargin: '-1px 0px 0px 0px' }
+);
+// Create a sentinel element right above the search bar
+const sentinel = document.createElement('div');
+sentinel.style.height = '1px';
+searchWrapper.parentNode.insertBefore(sentinel, searchWrapper);
+observer.observe(sentinel);
+
+// Scroll to top button
+const scrollBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 600);
+});
+scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
+</body>
+</html>
