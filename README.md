@@ -36,5 +36,5 @@ GitHub Pages must be pointed at the Actions workflow once: in the repo's
 ## Files
 
 - `index.html` — the site (everything lives here)
-- `techbro-dictionary.pdf` — downloadable PDF edition, linked from the site footer
+- `techbro-dictionary.pdf` — archived PDF edition (kept in the repo, not linked from the site)
 - `.github/workflows/deploy.yml` — the auto-deploy workflow
